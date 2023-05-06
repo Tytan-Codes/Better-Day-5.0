@@ -1,7 +1,7 @@
 import subprocess
 
 # Set the GitHub repository URL, the branch name, and the script file name
-github_url = "https://github.com/tytan-codes/better-day-5.0.git"
+github_url = "https://github.com/tytan-codes/Better-Day-5.0.git"
 branch_name = "Stable"
 script_name = "main.py"
 

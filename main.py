@@ -66,7 +66,7 @@ def newhere():
 ######################################################
 
 # Set the GitHub repository URL and the branch name
-github_url = "https://github.com/tytan-codes/better-day-5.0.git"
+github_url = "https://github.com/tytan-codes/Better-Day-5.0.git"
 branch_name = "Stable"
 script_name = "main.py"
 # Get the latest commit hash from the GitHub repository for the specified branch

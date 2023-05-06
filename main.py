@@ -70,7 +70,7 @@ github_url = "https://github.com/tytan-codes/Better-Day-5.0.git"
 branch_name = "Stable"
 script_name = "main.py"
 # Get the latest commit hash from the GitHub repository for the specified branch
-cmd = f"git ls-remote {github_url} {branch_name}"
+cmd = f"git ls-remote --heads {github_url} {branch_name}"
 result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 if result.returncode != 0:
     print("Error getting latest commit hash from GitHub.")

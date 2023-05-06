@@ -6,6 +6,17 @@ colorama.init(autoreset=True)
 import platform
 import sys
 import time
+import click
+from better_day.main import main
+
+@click.command()
+def better_day():
+    main()
+
+if __name__ == '__main__':
+    better_day()
+
+
 # Check if the user has already accepted the liability disclaimer
 def printt(text):
     for char in text:
@@ -63,77 +74,17 @@ def newhere():
     print(Style.BRIGHT + Fore.RED + 'Better Day ' + Style.BRIGHT + Fore.YELLOW + '> ' + Style.BRIGHT + Fore.RED + 'Choose ')
     time.sleep(1)
     printt('This is where you pick one.')
+    break
+    main()
+    
 ######################################################
 
-# Set the GitHub repository URL and the branch name
-github_url = "https://github.com/tytan-codes/Better-Day-5.0.git"
-branch_name = "Stable"
-script_name = "main.py"
-# Get the latest commit hash from the GitHub repository for the specified branch
-cmd = f"git ls-remote --heads {github_url} {branch_name}"
-result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-if result.returncode != 0:
-    print("Error getting latest commit hash from GitHub.")
-    exit()
-latest_commit = result.stdout.decode().split()[0]
-
-# Check if the latest commit is already downloaded
-cmd = "git rev-parse HEAD"
-result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-if result.returncode != 0:
-    print("Error getting current commit hash.")
-    exit()
-current_commit = result.stdout.decode().strip()
-
-if current_commit == latest_commit:
-    print("You are running the latest version of the script.")
-else:
-    print("A new version of the script is available on GitHub.")
-    print(f"Latest commit on {branch_name}: {latest_commit}")
-
-    
-    print(f"{Style.BRIGHT + Fore.RED}You are running an outdated version of the script.")
-    print(f"{Style.BRIGHT}A new version of the script is available on GitHub.")
-    print(f"{Style.BRIGHT + Fore.RED}Please update by running update.py")
-    print(f'{Style.BRIGHT + Fore.RED}You updating will make your experience better')
-    exit()
 
 
-current_os = platform.system()
-        
-
-print('You operating system is not supported yet.')
-print(f"Unknown operating system: {current_os}")
-exit()
 
 
             
             
-############################################
-if os.path.exists('accepted.txt'):
-    print('Welcome back!')
-    starter()
-else:
-    # Display the liability disclaimer
-    print('Welcome to the program!')
-    print('Before you continue, you must accept the liability disclaimer.')
-    print('Liability Disclaimer: [insert liability disclaimer here]')
-
-    # Ask the user if they accept the liability disclaimer
-    while True:
-        response = input('Do you accept the liability disclaimer? (Y/N)').lower()
-        if response == 'y':
-            # Create a file indicating that the user has accepted the liability disclaimer
-            with open('accepted.txt', 'w') as f:
-                f.write('Accepted')
-            print('Thank you for accepting the liability disclaimer. You may proceed with the program.')
-            newhere()
-        elif response == 'n':
-            # End the program if the user does not accept the liability disclaimer
-            print('You must accept the liability disclaimer to use the program. Exiting...')
-            exit()
-        else:
-            print('Invalid response. Please enter Y or N.')
 
 def starter():
     os.system('cls')        
@@ -157,11 +108,36 @@ def starter():
     enter = input(Style.BRIGHT + Fore.YELLOW + '[' + Style.BRIGHT + Fore.RED + '~' + Style.BRIGHT + Fore.YELLOW + '] ' + Style.BRIGHT + Fore.RED + 'Press Enter to Continue...' )
 
     if enter == "":
-        newhere()
+        main()
 
     else:
         print(Style.BRIGHT + Fore.RED +"THATS NOT ENTER, THAT\'s ", enter)
         
+############################################
+if os.path.exists('accepted.txt'):
+    print('Welcome back!')
+    main()
+else:
+    # Display the liability disclaimer
+    print('Welcome to the program!')
+    print('Before you continue, you must accept the liability disclaimer.')
+    print('Liability Disclaimer: [insert liability disclaimer here]')
+
+    # Ask the user if they accept the liability disclaimer
+    while True:
+        response = input('Do you accept the liability disclaimer? (Y/N)').lower()
+        if response == 'y':
+            # Create a file indicating that the user has accepted the liability disclaimer
+            with open('accepted.txt', 'w') as f:
+                f.write('Accepted')
+            print('Thank you for accepting the liability disclaimer. You may proceed with the program.')
+            newhere()
+        elif response == 'n':
+            # End the program if the user does not accept the liability disclaimer
+            print('You must accept the liability disclaimer to use the program. Exiting...')
+            exit()
+        else:
+            print('Invalid response. Please enter Y or N.')
         
         
 starter()
